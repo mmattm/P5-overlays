@@ -1,12 +1,7 @@
-console.log("p5 loaded");
-
-// Select all div elements on the page
-const divs = document.querySelectorAll("div");
-
-let elementsData = [];
-let myCanvas;
-
 let mondrianColors = [];
+let myCanvas;
+let blendModes = ["difference", "exclusion", "multiply", "normal"];
+let blendCount = 0;
 
 function setup() {
   // Create a p5.js canvas
@@ -30,11 +25,9 @@ function setup() {
     color(255, 255, 100), // Lighter Yellow
   ];
 
-  // move a div to body
-
-  //   originParent.position(0, 0); // Positions the canvas at the top-left corner
-  //   originParent.style("z-index", "1000000"); // Set z-index to 10 (or any desired value)
-  //   originParent.style("position", "fixed"); // Set position to fixed
+  // add mix blend mode difference to canvas defaulCanvas0
+  myCanvas.style("mix-blend-mode", blendModes[0]);
+  myCanvas.style("pointer-events", "none");
 
   // Initial calculation
   updateElementsData();
@@ -65,25 +58,26 @@ function updateElementsData() {
 
   //background(0);
   myCanvas.clear();
-  background(0);
-
+  // background(0);
+  blendMode(DIFFERENCE);
   for (let el of elementsData) {
     // fill(random(255), random(255), random(255)); // Random color
     fill(random(mondrianColors));
+
     //noFill();
     //stroke(0);
     //strokeWeight(10);
     noStroke();
     rect(el.x, el.y, el.width, el.height);
   }
-
-  //redraw(); // Redraw with updated positions
 }
 
-function draw() {
-  //   background(255);
-  //   for (let el of elementsData) {
-  //     fill(random(255), random(255), random(255)); // Random color
-  //     rect(el.x, el.y, el.width, el.height);
-  //   }
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  updateElementsData();
+}
+
+function mousePressed() {
+  blendCount++;
+  myCanvas.style("mix-blend-mode", blendModes[blendCount % blendModes.length]);
 }
