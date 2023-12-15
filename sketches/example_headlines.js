@@ -1,4 +1,3 @@
-let mondrianColors = [];
 let myCanvas;
 
 let randomCount = 60;
@@ -7,9 +6,6 @@ let count = 0;
 let colors;
 
 function setup() {
-  // Waiting for font to load
-  delay(1000);
-
   myCanvas = createCanvas(windowWidth, windowHeight);
 
   // Set the canvas to a fixed position and give it a z-index

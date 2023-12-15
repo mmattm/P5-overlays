@@ -1,10 +1,6 @@
-let mondrianColors = [];
 let myCanvas;
 
-let img;
-
 function setup() {
-  // Create a p5.js canvas
   myCanvas = createCanvas(windowWidth, windowHeight);
 
   // Set the canvas to a fixed position and give it a z-index
@@ -15,20 +11,21 @@ function setup() {
 
   // Move the div to the body
   document.body.appendChild(document.getElementById("defaultCanvas0"));
-  imageMode(CENTER);
 
-  //img = loadImage(random(pageImages));
+  textFont("DM Serif Display");
 }
 
 function draw() {
-  if (mouseIsPressed && images.length > 0) {
-    //console.log(pageImages[0]);
-    image(img, mouseX, mouseY);
-  }
-}
+  clear();
 
-function mousePressed() {
-  img = loadImage(random(images));
+  push();
+  translate(mouseX, mouseY);
+  textSize(128);
+  textAlign(CENTER, CENTER);
+  fill(255, 0, 0);
+  rotate(sin(frameCount / 100) * 2);
+  text("Hello World!", 0, 0);
+  pop();
 }
 
 function windowResized() {
