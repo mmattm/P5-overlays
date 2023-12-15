@@ -61,12 +61,7 @@ function updateElementsData() {
   // background(0);
   blendMode(DIFFERENCE);
   for (let el of elementsData) {
-    // fill(random(255), random(255), random(255)); // Random color
     fill(random(mondrianColors));
-
-    //noFill();
-    //stroke(0);
-    //strokeWeight(10);
     noStroke();
     rect(el.x, el.y, el.width, el.height);
   }
