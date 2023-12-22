@@ -1,6 +1,8 @@
 let myCanvas;
 let img;
 
+let flashlight = true;
+
 function setup() {
   myCanvas = createCanvas(windowWidth, windowHeight);
 
@@ -19,23 +21,32 @@ function setup() {
 function draw() {
   // get scroll position on page
   clear();
-  background(0, 0, 0, 200);
-  drawingContext.save(); // Save before clipping mask so you can undo it later on. ALWAYS DO THIS BEFORE TRANSLATIONS.
-  noStroke();
-  circle(mouseX, mouseY, 360 + sin(frameCount * 0.01) * 60);
-  drawingContext.clip();
-  clear();
 
-  push();
-  fill(255, 0, 0);
-  circle(width / 2, height / 2, 360 + sin(frameCount * 0.01) * 60);
+  if (flashlight) {
+    background(0, 0, 0, 100);
+    drawingContext.save(); // Save before clipping mask so you can undo it later on. ALWAYS DO THIS BEFORE TRANSLATIONS.
+    noStroke();
+    circle(mouseX, mouseY, 360 + sin(frameCount * 0.01) * 60);
+    drawingContext.clip();
+    clear();
 
-  pop();
-  //image(img, 0, 0, width, height);
+    push();
+    fill(255, 0, 0);
+    // Rajouter les éléments grahique ici
 
-  drawingContext.restore(); // Remove the clippping mask and go back to normal.
+    circle(width / 2, height / 2, 360 + sin(frameCount * 0.01) * 60);
+
+    pop();
+    //image(img, 0, 0, width, height);
+
+    drawingContext.restore(); // Remove the clippping mask and go back to normal.
+  }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function mousePressed() {
+  flashlight = !flashlight;
 }
