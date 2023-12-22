@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["p5.min.js", "utils.js", "/sketches/example_words.js"],
+      "js": ["p5.min.js", "utils.js", "/sketches/example_google_words.js"],
       "css": ["styles.css"]
     }
   ]
