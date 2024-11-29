@@ -37,48 +37,12 @@ function setup() {
   myCanvas.style("z-index", "10000000000"); // Set z-index to 10 (or any desired value)
   myCanvas.style("position", "fixed"); // Set position to fixed
 
-  // add mix blend mode difference to canvas defaulCanvas0
-  //myCanvas.style("pointer-events", "none");
-
-  // Initial calculation
-  //updateElementsData();
-
-  //drawElements();
-
-  // Update positions on scroll
-  //window.addEventListener("scroll", updateElementPositions);
-  //window.addEventListener("scroll", drawElements);
-
   // Move the div to the body
   document.body.appendChild(document.getElementById("defaultCanvas0"));
 
   totalCookies = document.cookie.split(";").length; //on récupère le nombre de cookies.
   cookies = document.cookie.split(";");
 }
-
-// function loadElementsData() {
-//   elementsData = []; // Clear previous data
-
-//   const allElements = Array.from(document.querySelectorAll("img")).filter(
-//     (img) => {
-//       return !img.src.toLowerCase().endsWith(".gif");
-//     }
-//   );
-
-//   allElements.forEach((el) => {
-//     const rect = el.getBoundingClientRect();
-
-//     if (el.height > 300)
-//       elementsData.push({
-//         x: rect.left,
-//         y: rect.top,
-//         width: rect.width,
-//         height: rect.height,
-//         img: loadImage(el.src),
-//       });
-//   });
-//   //background(0);
-// }
 
 function draw() {
   //updateElementsPositions();

@@ -64,26 +64,6 @@ function draw() {
   for (let scratchImage of scratchImages) {
     scratchImage.display();
   }
-  // for (let el of elementsData) {
-  //   // fill(random(255), random(255), random(255)); // Random color
-  //   fill(255, 0, 0);
-
-  //   //noFill();
-  //   //stroke(0);
-  //   //strokeWeight(10);
-  //   // noStroke();
-
-  //   push();
-  //   translate(el.x, el.y);
-  //   //rect(0, 0, el.width, el.height);
-  //   blur(10);
-  //   image(el.img, 0, 0, el.width, el.height);
-
-  //   pop();
-  //   // console.log(el);
-  //   // let img = loadImage(el.src);
-  //   // imgs.push(img);
-  // }
 }
 
 class ScratchImage {
@@ -109,46 +89,6 @@ class ScratchImage {
 
   display() {
     push();
-
-    // fill(color("rgb(255, 0, 0)"));
-    // circle(mouseX, mouseY, 100);
-
-    // fill(255, 0, 0);
-    // rect(0, 0, this.width, this.height);
-    //fill(255, 0, 0);
-    //rect(0, 0, this.width, this.height);
-
-    // this.pgraphics.image(
-    //   this.img,
-    //   100,
-    //   0,
-    //   this.pgraphics.width,
-    //   this.pgraphics.height
-    // );
-
-    // this.pgraphics.fill(255, 0, 0);
-    // this.pgraphics.rect(0, 0, this.pgraphics.width, this.pgraphics.height);
-
-    // translate(this.x, this.y);
-    //console.log(this.pgraphics);
-
-    /*
-    if (this.pgraphics.width > 0) {
-      this.pgraphics.clear();
-      this.pgraphics.fill(color("rgb(255, 0, 0)"));
-      this.pgraphics.circle(mouseX, mouseY, 100);
-
-      push();
-      translate(this.x, this.y);
-
-      this.img.mask(this.pgraphics);
-
-      image(this.img, 100, 0, this.width, this.height);
-      pop();
-
-      //image(this.pgraphics, 0, 0, this.width, this.height);
-    }
-    */
 
     fill(255, 0, 0);
     translate(this.x, this.y);

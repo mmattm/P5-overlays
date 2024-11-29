@@ -85,52 +85,6 @@ function draw() {
     if (frameCount % 10 == 0) startIndex++;
   }
   //if (img) image(img, 0, 0);
-
-  /*
-  if (img) {
-    //
-    let charIndex = startIndex;
-    let w = width / img.width;
-    let h = height / img.height;
-
-    //translate(img.width / 2, -img.height / 2);
-    translate(width / 2 - img.width / 2, height / 2 - img.height / 2);
-
-    //Waves();
-    
-    img.loadPixels();
-    //So over here we are making use of a pixel array in p5js
-    //every pixel has an rgb value and a alpha value, stored in an array so we go to that particular pixel using the formula i + j * me.widthand then access the values.
-    for (let j = 0; j < img.height; j++) {
-      for (let i = 0; i < img.width; i++) {
-        const pixelIndex = (i + j * img.width) * 4;
-        const r = img.pixels[pixelIndex + 0];
-        const g = img.pixels[pixelIndex + 1];
-        const b = img.pixels[pixelIndex + 2];
-        const avg = (r + g + b) / 3;
-
-        noStroke();
-        //to change the color of the text according to the rgb value of the pixel position in the pixel array
-        // if (mouseIsPressed) {
-        //   fill(r, g, b);
-        // } else {
-        //   fill(avg);
-        // }
-        fill(avg);
-
-        textSize(w * 1.2);
-        textAlign(CENTER, CENTER);
-
-        //for positioning of the poem
-        text(alt.charAt(charIndex % alt.length), i, j);
-        charIndex++;
-      }
-    }
-    //counter to move the poem according to the framerate
-    startIndex++;
-  }
-  */
-
   pop();
 }
 

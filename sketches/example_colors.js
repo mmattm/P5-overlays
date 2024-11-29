@@ -1,16 +1,11 @@
 let mondrianColors = [];
-let myCanvas;
+let canvas;
 let blendModes = ["difference", "exclusion", "multiply", "normal"];
 let blendCount = 0;
 
 function setup() {
-  // Create a p5.js canvas
-  myCanvas = createCanvas(windowWidth, windowHeight);
-
-  // Set the canvas to a fixed position and give it a z-index
-  myCanvas.position(0, 0); // Positions the canvas at the top-left corner
-  myCanvas.style("z-index", "10000000000"); // Set z-index to 10 (or any desired value)
-  myCanvas.style("position", "fixed"); // Set position to fixed
+  canvas = createCanvas(windowWidth, windowHeight);
+  setupCanvas(canvas);
 
   mondrianColors = [
     color(255, 0, 0), // Red
@@ -26,8 +21,7 @@ function setup() {
   ];
 
   // add mix blend mode difference to canvas defaulCanvas0
-  myCanvas.style("mix-blend-mode", blendModes[0]);
-  myCanvas.style("pointer-events", "none");
+  canvas.style("mix-blend-mode", blendModes[0]);
 
   // Initial calculation
   updateElementsData();
@@ -57,7 +51,7 @@ function updateElementsData() {
   });
 
   //background(0);
-  myCanvas.clear();
+  canvas.clear();
   // background(0);
   blendMode(DIFFERENCE);
   for (let el of elementsData) {
@@ -74,5 +68,5 @@ function windowResized() {
 
 function mousePressed() {
   blendCount++;
-  myCanvas.style("mix-blend-mode", blendModes[blendCount % blendModes.length]);
+  canvas.style("mix-blend-mode", blendModes[blendCount % blendModes.length]);
 }
