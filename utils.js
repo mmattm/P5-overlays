@@ -1,6 +1,11 @@
 let metadatas;
 
 function preload() {
+  // loadUtils();
+}
+
+// function run when page loaded
+window.onload = function () {
   loadUtils();
 }
 
@@ -31,7 +36,7 @@ async function loadUtils() {
   hiddenElements = getHiddenElements();
   console.log("👻 Hidden Elements:", hiddenElements);
 
-  estimatedCO2 = await calculatePageSizeAndCO2();
+  estimatedCO2 = calculatePageSizeAndCO2();
   console.log("🌍 Page Size and Estimated CO2:", estimatedCO2);
 
   // push all data to metadatas
@@ -65,9 +70,9 @@ function getAllImages() {
   const allImages = document.querySelectorAll("img");
 
   allImages.forEach((img) => {
-    if (img.complete && img.naturalWidth > 100 && img.naturalHeight > 100) {
+    if (img.complete && img.naturalWidth > 180 && img.naturalHeight > 180) {
       // Ensure image is loaded and has minimum dimensions
-      if (img.src.match(/\.(jpg|jpeg|png|webp|gif|bmp)$/i)) {
+      //if (img.src.match(/\.(jpg|jpeg|png|webp|gif|bmp)$/i)) {
         // Check for bitmap formats
         images.push({
           src: img.src,
@@ -75,7 +80,7 @@ function getAllImages() {
           width: img.naturalWidth,
           height: img.naturalHeight,
         });
-      }
+      //}
     }
   });
 
