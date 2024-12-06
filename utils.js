@@ -1,13 +1,13 @@
 let metadatas;
 
 function preload() {
-  // loadUtils();
+  loadUtils();
 }
 
 // function run when page loaded
 window.onload = function () {
-  loadUtils();
-}
+  //loadUtils();
+};
 
 async function loadUtils() {
   console.log("utils.js loaded");
@@ -73,13 +73,13 @@ function getAllImages() {
     if (img.complete && img.naturalWidth > 180 && img.naturalHeight > 180) {
       // Ensure image is loaded and has minimum dimensions
       //if (img.src.match(/\.(jpg|jpeg|png|webp|gif|bmp)$/i)) {
-        // Check for bitmap formats
-        images.push({
-          src: img.src,
-          alt: img.alt || "undefined",
-          width: img.naturalWidth,
-          height: img.naturalHeight,
-        });
+      // Check for bitmap formats
+      images.push({
+        src: img.src,
+        alt: img.alt || "undefined",
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
       //}
     }
   });
