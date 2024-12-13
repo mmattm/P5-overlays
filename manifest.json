@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["p5.min.js", "utils.js", "/sketches/example_images.js"],
+      "js": ["p5.min.js", "utils.js", "/sketches/Davia/example_comments.js"],
       "css": ["styles.css"]
     }
   ]

@@ -36,8 +36,8 @@ async function loadUtils() {
   hiddenElements = getHiddenElements();
   console.log("👻 Hidden Elements:", hiddenElements);
 
-  estimatedCO2 = calculatePageSizeAndCO2();
-  console.log("🌍 Page Size and Estimated CO2:", estimatedCO2);
+  // estimatedCO2 = calculatePageSizeAndCO2();
+  // console.log("🌍 Page Size and Estimated CO2:", estimatedCO2);
 
   // push all data to metadatas
   metadatas = {
@@ -49,7 +49,7 @@ async function loadUtils() {
     comments: comments,
     ads: ads,
     hiddenElements: hiddenElements,
-    estimatedCO2: estimatedCO2,
+    // estimatedCO2: estimatedCO2,
   };
 }
 
@@ -218,43 +218,30 @@ function getCookiesAndBrowserPreferences() {
 }
 
 function collectCommentsFromCurrentPage() {
-  const commentRegex = /(\/\/.*|\/\*[\s\S]*?\*\/)/g; // Matches single-line and multi-line comments
+  const htmlContent = document.documentElement.outerHTML;
+
+  // Regex to match code-style comments:
+  // 1. Single-line comments: // ...
+  // 2. Multi-line comments: /* ... */
+  const commentRegex = /(\/\/[^\r\n]*|\/\*[\s\S]*?\*\/)/g;
+
   const comments = [];
+  let match;
 
-  // Get all <script> tags from the current page
-  const scripts = document.querySelectorAll("script");
+  while ((match = commentRegex.exec(htmlContent)) !== null) {
+    const commentContent = match[0].trim();
 
-  scripts.forEach((script) => {
-    if (script.src) {
-      // External script detected - cannot analyze without fetching (requires CORS)
-      comments.push({
-        content: `External script: ${script.src}`,
-        line: "N/A",
-      });
-    } else if (script.textContent) {
-      // Inline script - analyze its content
-      const lines = script.textContent.split("\n");
-      lines.forEach((line, index) => {
-        const matches = line.match(commentRegex);
-        if (matches) {
-          matches.forEach((match) => {
-            comments.push({
-              content: match.trim(),
-              line: index + 1, // Line numbers are 1-based
-            });
-          });
-        }
-      });
-    }
-  });
+    // Calculate the line number by splitting the HTML before the match
+    const beforeComment = htmlContent.slice(0, match.index);
+    const lineNumber = beforeComment.split("\n").length;
 
-  // Filter out machine-generated comments
-  const machineGeneratedRegex = /^External script:/i;
-  const filteredComments = comments.filter((comment) => {
-    return !machineGeneratedRegex.test(comment.content); // Exclude comments like "External script: ..."
-  });
+    comments.push({
+      content: commentContent,
+      line: lineNumber,
+    });
+  }
 
-  return filteredComments;
+  return comments;
 }
 
 function detectGoogleAdsBanners() {
@@ -313,7 +300,6 @@ function detectGoogleAdsBanners() {
 
   return ads;
 }
-
 function getHiddenElements() {
   const hiddenElements = [];
   const allElements = document.querySelectorAll("*"); // Select all elements on the page
@@ -349,16 +335,21 @@ function getHiddenElements() {
         if (computedStyle.width === "0px") reason.push("width: 0px");
         if (element.hidden) reason.push("hidden attribute");
 
+        const rect = element.getBoundingClientRect(); // Get the bounding box
         hiddenElements.push({
           tag: element.tagName.toLowerCase(),
           content: content,
           reason: reason.join(", "),
+          coordinates: {
+            x: rect.left + window.scrollX, // Adjust for scrolling
+            y: rect.top + window.scrollY, // Adjust for scrolling
+          },
         });
       }
     }
   });
 
-  return { hiddenElements };
+  return hiddenElements;
 }
 
 async function calculatePageSizeAndCO2() {
