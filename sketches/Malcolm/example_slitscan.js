@@ -4,36 +4,38 @@ let hoveredIndex = -1; // Indice du segment survolé
 let timeOffsets = []; // Temps aléatoire pour chaque segment
 let scaleFactorsWidth = []; // Facteurs d'échelle aléatoires pour la largeur de chaque segment
 
-function preload() {
-  // img = loadImage(
-  //   "https://64.media.tumblr.com/tumblr_mcqgcu37r41qcpnzho1_540.jpg"
-  // );
+// function preload() {
+//   // img = loadImage(
+//   //   "https://64.media.tumblr.com/tumblr_mcqgcu37r41qcpnzho1_540.jpg"
+//   // );
 
-  /// Get the document's root element or body
-  const captureArea = document.body;
+//   /// Get the document's root element or body
+//   const captureArea = document.body;
 
-  // Use html2canvas with the specified viewport dimensions
-  html2canvas(captureArea, {
-    width: window.innerWidth, // Limit the width to the viewport's width
-    height: window.innerHeight, // Limit the height to the viewport's height
-  }).then((canvas) => {
-    // Convert the canvas to a data URL
-    const screenshot = canvas.toDataURL("image/png");
+//   // Use html2canvas with the specified viewport dimensions
+//   html2canvas(captureArea, {
+//     width: window.innerWidth, // Limit the width to the viewport's width
+//     height: window.innerHeight, // Limit the height to the viewport's height
+//   }).then((canvas) => {
+//     // Convert the canvas to a data URL
+//     const screenshot = canvas.toDataURL("image/png");
 
-    // Load the visible screenshot into p5.js
-    // img = loadImage(screenshot);
-    // console.log("screenshot", screenshot);
-    // console.log("img", img);
-    img = loadImage(screenshot, () => {
-      console.log("Image loaded successfully.");
-      //setup(); // Manually call setup when ready
-    });
-  });
-}
+//     // Load the visible screenshot into p5.js
+//     // img = loadImage(screenshot);
+//     // console.log("screenshot", screenshot);
+//     // console.log("img", img);
+//     img = loadImage(screenshot, () => {
+//       console.log("Image loaded successfully.");
+//       //setup(); // Manually call setup when ready
+//     });
+//   });
+// }
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   setupCanvas(canvas);
+
+  console.log("setup");
 
   /*
   // Générer des délais aléatoires pour chaque subdivision
@@ -47,12 +49,13 @@ function setup() {
 function draw() {
   console.log("draw");
 
-  image(img, 0, 0, width, height); // Afficher l'image source
+  if (!img) image(img, 0, 0, width, height); // Afficher l'image source
 
   // fill(0);
   // rect(0, 0, width, height); // Fond noir pour l'image
 
   console.log("show image", img);
+
   /*
   let totalWidth = 0; // Variable pour garder une trace de la position horizontale
   let rectWidths = []; // Stocker les largeurs animées pour calculer l'échelle

@@ -292,14 +292,16 @@ function detectGoogleAdsBanners() {
     }
   });
 
-  // Total estimated value
-  ads.push({
-    type: "summary",
-    totalEstimatedValue: `$${estimatedTotalValue.toFixed(2)}`,
-  });
-
-  return ads;
+  // Final structure with ads and summary
+  return {
+    ads: ads,
+    summary: {
+      totalAds: ads.length,
+      totalEstimatedValue: `$${estimatedTotalValue.toFixed(2)}`,
+    },
+  };
 }
+
 function getHiddenElements() {
   const hiddenElements = [];
   const allElements = document.querySelectorAll("*"); // Select all elements on the page
