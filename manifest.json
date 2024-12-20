@@ -7,13 +7,14 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": [
-        "p5.min.js",
-        "matter.min.js",
-        "utils.js",
-        "/sketches/Alessia/eyes.js"
-      ],
+      "js": ["p5.min.js", "utils.js", "/sketches/Davia/ruban.js"],
       "css": ["styles.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/poppins.ttf"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
