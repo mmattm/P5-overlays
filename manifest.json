@@ -9,9 +9,9 @@
       "matches": ["<all_urls>"],
       "js": [
         "p5.min.js",
+        "p5.sound.min.js",
         "utils.js",
-        "html2canvas.min.js",
-        "/sketches/Malcolm/slitscan_2.js"
+        "/sketches/Jose/example_sequencer.js"
       ],
       "css": ["styles.css"]
     }

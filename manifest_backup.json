@@ -7,7 +7,12 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["p5.min.js", "utils.js", "/sketches/Malcolm/example_slitscan.js"],
+      "js": [
+        "p5.min.js",
+        "utils.js",
+        "html2canvas.min.js",
+        "/sketches/Malcolm/slitscan_2.js"
+      ],
       "css": ["styles.css"]
     }
   ]
