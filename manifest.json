@@ -11,7 +11,7 @@
         "p5.min.js",
         "utils.js",
         "html2canvas.min.js",
-        "/sketches/Philippe/co2.js"
+        "/sketches/Malcolm/slitscan_2.js"
       ],
       "css": ["styles.css"]
     }
